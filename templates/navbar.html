@@ -1,0 +1,48 @@
+{% load static %}
+
+<!-- Navbar Start -->
+<div class="container-fluid p-0 nav-bar">
+    <nav class="navbar navbar-expand-lg bg-none navbar-dark py-3">
+        <a href="{% url 'home' %}" class="navbar-brand px-lg-4 m-0">
+            <h1 class="m-0 display-4 text-uppercase text-white">KOPPEE</h1>
+        </a>
+        <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+            <div class="navbar-nav ml-auto p-4">
+                <a href="#index" class="nav-item nav-link active">Home</a>
+                <a href="#about" class="nav-item nav-link">About</a>
+                <a href="#service" class="nav-item nav-link">Service</a>
+                <a href="#menu" class="nav-item nav-link">Menu</a>
+                {#                <div class="nav-item dropdown">#}
+                {#                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Pages</a>#}
+                {#                    <div class="dropdown-menu text-capitalize">#}
+                {#                        <a href="reservation.html" class="dropdown-item">Reservation</a>#}
+                {#                        <a href="testimonial.html" class="dropdown-item">Testimonial</a>#}
+                {#                    </div>#}
+                {#                </div>#}
+                <a href="#reservation" class="nav-bar nav-link">Reservation</a>
+                <a href="#testimonial" class="nav-bar nav-link">Testimonials</a>
+                <a href="{% url 'contact' %}" class="nav-item nav-link">Contact</a>
+            </div>
+        </div>
+    </nav>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        // Smooth scrolling when clicking on navbar links
+        $('a[href^="#"]').on('click', function (event) {
+            var target = $(this.getAttribute('href'));
+            if (target.length) {
+                event.preventDefault();
+                $('html, body').stop().animate({
+                    scrollTop: target.offset().top
+                }, 1000);
+            }
+        });
+    });
+</script>
+<!-- Navbar End -->
