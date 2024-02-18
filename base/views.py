@@ -3,7 +3,10 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.db.models import Q
+from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
+from django.urls import reverse
+
 from .models import Reservation
 from .forms import ReserveFrom
 
@@ -17,10 +20,17 @@ def reservation(request):
     if request.method == 'POST':
         form = ReserveFrom(request.POST)
         if form.is_valid():
-            form.save()
-            return redirect('home')
+            instance = form.save()
+            return redirect('success-page', pk=instance.pk)
     context = {'form': form}
     return render(request, 'reservation.html', context)
+
+
+def success_page(request, pk):
+    reserves = Reservation.objects.get(id=pk)
+    context = {'reserves': reserves}
+    return render(request, 'success_page.html', context)
+
 
 def contact(request):
     return render(request, 'contact.html')
