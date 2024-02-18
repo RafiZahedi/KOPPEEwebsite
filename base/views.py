@@ -22,7 +22,6 @@ def reservation(request):
     context = {'form': form}
     return render(request, 'reservation.html', context)
 
-
 def contact(request):
     return render(request, 'contact.html')
 
