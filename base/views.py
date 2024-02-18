@@ -60,10 +60,26 @@ def admin_logout(request):
 
 @login_required(login_url='/admin_login')
 def admin_panel(request):
-    q = request.GET.get('q') if request.GET.get('q') != None else ''
-    reserves = Reservation.objects.filter(
-        Q(name__icontains=q) |
-        Q(email__icontains=q)
-    )
-    context = {"reserves": reserves}
+    q = request.GET.get('q') if request.GET.get('q') is not None else ''
+    sort_by = request.GET.get('sort_by')
+    ord_by = request.GET.get('order_by')
+    ordering = 'date'
+    if sort_by in ['date', 'time', 'number_of_people']:
+        ordering = sort_by
+    if ord_by == 'dec':
+        reserves = Reservation.objects.filter(
+            Q(name__icontains=q) |
+            Q(email__icontains=q)
+        ).order_by('-' + ordering)
+    else:
+        reserves = Reservation.objects.filter(
+            Q(name__icontains=q) |
+            Q(email__icontains=q)
+        ).order_by(ordering)
+
+    # reserves = Reservation.objects.all().order_by(ordering)
+    context = {
+        "reserves": reserves,
+        'sort_by': sort_by
+    }
     return render(request, 'admin_panel.html', context)
