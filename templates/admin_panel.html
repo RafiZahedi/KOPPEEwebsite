@@ -74,6 +74,13 @@
     <button class="mode-button" id="dark-mode">Dark</button>
     <button class="mode-button" id="light-mode">Light</button>
 </div>
+<form method="GET" action="{% url 'admin-panel' %}">
+    <input type="text" name="q" placeholder="Search for name or Email and hit Enter">
+    <label>Search in {{ reserves | length }} Reserves</label>
+</form>
+<div>
+    <button><a href="{% url 'admin-panel' %}">All / Refresh</a></button>
+</div>
 <table>
     <thead>
     <tr>

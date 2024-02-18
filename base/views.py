@@ -2,6 +2,7 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+from django.db.models import Q
 from django.shortcuts import render, redirect
 from .models import Reservation
 from .forms import ReserveFrom
@@ -50,6 +51,10 @@ def admin_logout(request):
 
 @login_required(login_url='/admin_login')
 def admin_panel(request):
-    reserves = Reservation.objects.all()
+    q = request.GET.get('q') if request.GET.get('q') != None else ''
+    reserves = Reservation.objects.filter(
+        Q(name__icontains=q) |
+        Q(email__icontains=q)
+    )
     context = {"reserves": reserves}
     return render(request, 'admin_panel.html', context)
