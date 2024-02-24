@@ -15,6 +15,7 @@
     <!-- Page Header End -->
     <div class=" d-flex justify-content-center">
         <div>
+            <p id="countdown-message">This window will be closed in 5 seconds.</p>
             <h1> Your reservation was made, See you soon!</h1>
             <div class=" text-center">
                 <h5>Here are the details: </h5>
@@ -30,5 +31,30 @@
         </div>
     </div>
 
+    <script>
+        // Define the countdown duration
+        var countdownDuration = 5;
+
+        // Function to update countdown message
+        function updateCountdownMessage(seconds) {
+            document.getElementById('countdown-message').innerText = "This window will be redirected in " + seconds + " seconds.";
+        }
+
+        // Function to update countdown and redirect
+        function countdownAndRedirect() {
+            updateCountdownMessage(countdownDuration);
+            var countdownInterval = setInterval(function () {
+                countdownDuration--;
+                updateCountdownMessage(countdownDuration);
+                if (countdownDuration === 0) {
+                    clearInterval(countdownInterval);
+                    window.location.href = "{% url 'home' %}";
+                }
+            }, 1000); // Update every 1 second
+        }
+
+        // Call the countdownAndRedirect function when the page loads
+        countdownAndRedirect();
+    </script>
 
 {% endblock %}

@@ -11,10 +11,10 @@
         </button>
         <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
             <div class="navbar-nav ml-auto p-4">
-                <a href="#index" class="nav-item nav-link active">Home</a>
-                <a href="#about" class="nav-item nav-link">About</a>
-                <a href="#service" class="nav-item nav-link">Service</a>
-                <a href="#menu" class="nav-item nav-link">Menu</a>
+                <a href=" {% url 'home' %}#index" class="nav-item nav-link">Home</a>
+                <a href=" {% url 'home' %}#about" class="nav-item nav-link">About</a>
+                <a href="{% url 'home' %}#service" class="nav-item nav-link">Service</a>
+                <a href="{% url 'home' %}#menu" class="nav-item nav-link">Menu</a>
                 {#                <div class="nav-item dropdown">#}
                 {#                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Pages</a>#}
                 {#                    <div class="dropdown-menu text-capitalize">#}
@@ -22,8 +22,8 @@
                 {#                        <a href="testimonial.html" class="dropdown-item">Testimonial</a>#}
                 {#                    </div>#}
                 {#                </div>#}
-                <a href={% url 'reservation' %} class="nav-bar nav-link">Reservation</a>
-                <a href="#testimonial" class="nav-bar nav-link">Testimonials</a>
+                <a href="{% url 'reservation' %}" class="nav-bar nav-link">Reservation</a>
+                <a href=" {% url 'home' %}#testimonial" class="nav-bar nav-link">Testimonials</a>
                 <a href="{% url 'contact' %}" class="nav-item nav-link">Contact</a>
             </div>
         </div>

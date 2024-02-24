@@ -4,6 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.db.models import Q
 from django.shortcuts import render, redirect
+from django.views.decorators.cache import cache_control
 
 from .models import Reservation
 from .forms import ReserveFrom
@@ -17,6 +18,7 @@ def reservation(request):
     form = ReserveFrom()
     if request.method == 'POST':
         form = ReserveFrom(request.POST)
+        print(request.POST)
         if form.is_valid():
             instance = form.save()
             return redirect('success-page', pk=instance.pk)
@@ -24,6 +26,7 @@ def reservation(request):
     return render(request, 'reservation.html', context)
 
 
+# @cache_control(max_age=0)
 def success_page(request, pk):
     reserves = Reservation.objects.get(id=pk)
     context = {'reserves': reserves}
