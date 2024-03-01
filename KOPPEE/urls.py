@@ -23,6 +23,7 @@ urlpatterns = [
     path('', views.home, name='home'),
     path('contact/', views.contact, name='contact'),
     path('reservation/', views.reservation, name='reservation'),
+    path('delete_reservation/<str:pk>/', views.delete_reservation, name='delete-reservation'),
     path('success_page/<str:pk>/', views.success_page, name='success-page'),
     path('admin_login/', views.admin_login, name='admin-login'),
     path('admin_logout/', views.admin_logout, name='admin-logout'),

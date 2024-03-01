@@ -10,13 +10,15 @@
 </head>
 <body>
 <button onclick="window.location='{% url 'admin-logout' %}'"
-        class="ml-3 mt-2 btn btn-outline-danger">Logout</button>
+        class="ml-3 mt-2 btn btn-outline-danger">Logout
+</button>
 <div class="limiter">
     <div class="container-table100">
         <div class="wrap-table100">
             <div class="ml-1">
                 <div class="col-6">
                     <form method="GET">
+                        <label>Sort By: </label>
                         <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="sort_by">
                             <option value="date">Date</option>
                             <option value="time">Time</option>
@@ -31,9 +33,11 @@
                 </div>
                 <div class="col-6">
                     <form method="GET" action="{% url 'admin-panel' %}">
-                        <input class="form-control" type="text" name="q" placeholder="Search for name or email and hit Enter"/>
+                        <input class="form-control" type="text" name="q"
+                               placeholder="Search for name or email and hit Enter"/>
                         <button onclick="window.location='{% url 'admin-panel' %}'"
-                                class="mt-1 mb-1 btn btn-outline-primary btn-sm">All ({{ reserves | length }}) / Refresh </button>
+                                class="mt-1 mb-1 btn btn-outline-primary btn-sm">All ({{ reserves | length }}) / Refresh
+                        </button>
                     </form>
                 </div>
             </div>
@@ -46,7 +50,8 @@
                             <th class="cell100 column2">Name</th>
                             <th class="cell100 column3">Date</th>
                             <th class="cell100 column4">Time</th>
-                            <th class="cell100 column5">Number of People</th>
+                            <th class="cell100 column5">No. of People</th>
+                            <th class="cell100 column6">Action</th>
                         </tr>
                         </thead>
                     </table>
@@ -59,8 +64,21 @@
                                 <td class="cell100 column1">{{ reserve.email }}</td>
                                 <td class="cell100 column2">{{ reserve.name }}</td>
                                 <td class="cell100 column3">{{ reserve.date }}</td>
-                                <td class="cell100 column4">{{ reserve.time }}</td>
+                                <td class="cell100 column4">{{ reserve.time|time:"h:i A" }}</td>
                                 <td class="cell100 column5">{{ reserve.number_of_people }}</td>
+                                {% now 'Y-m-d' as today %}
+                                {% if reserve.date|date:"Y-m-d" < today %}
+                                    <td class="cell100 column6">
+                                        <button onclick="window.location='{% url 'delete-reservation' reserve.id %}'"
+                                                class="btn btn-outline-danger">Delete
+                                        </button>
+                                    </td>
+                                {% else %}
+                                    <td class="cell100 column6">
+                                        <button class="btn btn-outline-secondary" disabled>Delete</button>
+                                    </td>
+                                {% endif %}
+
                             </tr>
                         {% endfor %}
                         </tbody>
