@@ -9,7 +9,8 @@
     <meta name="robots" content="noindex, follow"/>
 </head>
 <body>
-<button class="ml-3 mt-2 btn btn-outline-danger">Logout</button>
+<button onclick="window.location='{% url 'admin-logout' %}'"
+        class="ml-3 mt-2 btn btn-outline-danger">Logout</button>
 <div class="limiter">
     <div class="container-table100">
         <div class="wrap-table100">
