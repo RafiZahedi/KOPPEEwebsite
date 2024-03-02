@@ -1,12 +1,13 @@
 {% load  static %}
 <!DOCTYPE html>
 <html lang="en">
-<title>Admin Panel</title>
 <head>
+    <title>Admin Panel</title>
     <link rel="stylesheet" type="text/css" href="{% static 'bootstrap/css/bootstrap.min.css' %}"/>
     <link rel="stylesheet" type="text/css" href="{% static 'css/admin panel/util.css' %}"/>
     <link rel="stylesheet" type="text/css" href="{% static 'css/admin panel/main.css' %}"/>
     <meta name="robots" content="noindex, follow"/>
+
 </head>
 <body>
 <button onclick="window.location='{% url 'admin-logout' %}'"
@@ -71,7 +72,6 @@
                                     <td class="cell100 column6">
                                         <a href="{% url 'delete-reservation' reserve.id %}"
                                            class="btn btn-outline-danger">Delete</a>
-                                    </td>
                                     </td>
                                 {% else %}
                                     <td class="cell100 column6">
