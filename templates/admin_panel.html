@@ -69,9 +69,9 @@
                                 {% now 'Y-m-d' as today %}
                                 {% if reserve.date|date:"Y-m-d" < today %}
                                     <td class="cell100 column6">
-                                        <button onclick="window.location='{% url 'delete-reservation' reserve.id %}'"
-                                                class="btn btn-outline-danger">Delete
-                                        </button>
+                                        <a href="{% url 'delete-reservation' reserve.id %}"
+                                           class="btn btn-outline-danger">Delete</a>
+                                    </td>
                                     </td>
                                 {% else %}
                                     <td class="cell100 column6">
