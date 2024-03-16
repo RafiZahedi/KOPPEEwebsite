@@ -8,12 +8,11 @@ KOPPEE is a web application for a coffee shop built with Django. It allows users
 - Reservations are validated to ensure they meet the criteria, such as not being in the past, within the coffee shop's operating hours, and limited to a maximum number of people.
 - Admin panel for managing reservations and viewing available tables.
 - Responsive design for desktop and mobile devices.
-- Dark mode and light mode for better user experience.
 
 ## Technologies Used
 
 - Django: Python web framework used for backend development.
-- HTML, CSS, JavaScript: Frontend technologies for building user interface and interactions.
+- HTML, CSS, JavaScript: Frontend technologies for building user interfaces and interactions.
 - SCSS: CSS preprocessor for styling.
 - Bootstrap: Frontend framework for responsive design and UI components.
 
